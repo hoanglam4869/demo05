@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+}
+
+.left-corner {
+  float: left;
+}
+
+.right-corner {
+  float: right;
+}
+
+.thumbnail img{
+  max-height:150px;
+}
+
