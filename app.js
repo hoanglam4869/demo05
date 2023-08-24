@@ -8,12 +8,6 @@ const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const dom = new JSDOM();
 const document = dom.window.document;
-const puppeteer = require("puppeteer");
-(async () => {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-  await browser.close();
-})();
 
 
 
