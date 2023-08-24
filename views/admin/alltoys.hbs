@@ -90,13 +90,13 @@
             <tbody>
                 {{#each allToys }}
                 <tr>
-                    <td>{{ this.bname }}{{ this.gname }}</td>
-                    <td>{{ this.bcategory }}{{ this.gcategory }}</td>
-                    <td>{{ this.bdetail }}{{ this.gdetail }}</td>
-                    <td><img src="{{ this.bimage }}{{ this.gimage }}" alt="{{ this.bname }}{{ this.gname }}"
+                    <td>{{ this.bname }}{{ this.gname }}{{ this.aname }}</td>
+                    <td>{{ this.bcategory }}{{ this.gcategory }}{{ this.acategory }}</td>
+                    <td>{{ this.bdetail }}{{ this.gdetail }}{{ this.adetail }}</td>
+                    <td><img src="{{ this.bimage }}{{ this.gimage }}{{ this.aimage }}" alt="{{ this.bname }}{{ this.gname }}{{ this.aname }}"
                             width="100"></td>
-                    <td>${{ this.bprice }}{{ this.gprice }}</td>
-                    <td>{{ this.bquantity }}{{ this.gquantity }}</td>
+                    <td>${{ this.bprice }}{{ this.gprice }}{{ this.aprice }}</td>
+                    <td>{{ this.bquantity }}{{ this.gquantity }}{{ this.aquantity }}</td>
                     
                     <td>
                         <a class="btn btn-warning" href="/admin/alltoys/update/{{ this._id }}">

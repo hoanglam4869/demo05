@@ -7,7 +7,7 @@
     <title>{{ title }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <style>        
+    <style>
         .card {
             border: none;
             transition: transform 0.3s;
@@ -56,10 +56,14 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" href="/cart"><i class="fa fa-shopping-cart"
                                 aria-hidden="true"></i></span>Shopping Cart
-                            </a></li>
-                    <li class="nav-item"><a class="nav-link" href="/boytoy"><i class="fa-solid fa-child"></i>Boy Toys</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/girltoy"><i class="fa-solid fa-child-dress"></i>Girl Toys</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/animaltoy"><i class="fa-solid fa-child-dress"></i>Animal Toys</a></li>
+                        </a></li>
+                    <li class="nav-item"><a class="nav-link" href="/boytoy"><i class="fa-solid fa-child"></i>Boy
+                            Toys</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/girltoy"><i class="fa-solid fa-child-dress"></i>Girl
+                            Toys</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/animaltoy"><i class="fa-solid fa-child"></i>Animal
+                            Toys</a></li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-user"
@@ -79,19 +83,20 @@
     </nav>
 
     <div class="container mt-4">
-        <h1 class="text-center">Boy Toys</h1>
+        <h1 class="text-center">Animal Toys</h1>
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            {{#each btoys}}
+            {{#each atoys}}
             <div class="col">
                 <div class="card h-100">
-                    <img src="{{this.bimage}}" alt="{{this.bname}}" class="card-img-top img-fluid">
+                    <img src="{{this.aimage}}" alt="{{this.aname}}" class="card-img-top img-fluid">
                     <div class="card-body">
-                        <h5 class="card-title">{{this.bname}}</h5>
-                        <p class="card-text">{{this.bdetail}}</p>
-                        <p class="card-price"><strong>Price:</strong> ${{this.bprice}}</p>
-                        <p class="card-category"><strong>Category:</strong> {{this.bcategory}}</p>
-                        <div class="card-quantity"><strong>In Stock:</strong> {{this.bquantity}}</div>
-                        <a href="#" class="btn btn-success mt-3 add-to-cart-btn" data-id="{{this._id}}" role="button">Add to Cart</a>
+                        <h5 class="card-title">{{this.aname}}</h5>
+                        <p class="card-text">{{this.adetail}}</p>
+                        <p class="card-price"><strong>Price:</strong> ${{this.aprice}}</p>
+                        <p class="card-category"><strong>Category:</strong> {{this.acategory}}</p>
+                        <div class="card-quantity"><strong>In Stock:</strong> {{this.aquantity}}</div>
+                        <a href="#" class="btn btn-success mt-3 add-to-cart-btn" data-id="{{this._id}}"
+                            role="button">Add to Cart</a>
 
                     </div>
                 </div>
@@ -118,9 +123,5 @@
         </div>
     </div>
 </footer>
-
-
-
-
 
 </html>

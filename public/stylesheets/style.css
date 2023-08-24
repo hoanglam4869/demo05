@@ -25,3 +25,12 @@ header {
   max-height:150px;
 }
 
+footer {
+  padding: 20px 0;
+}
+
+footer p {
+  margin: 5px 0;
+}
+
+

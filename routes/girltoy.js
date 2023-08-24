@@ -6,8 +6,4 @@ router.get('/', async (req, res) => {
   const gtoys = await GToy.find();
   res.render('shop/girltoy', { gtoys });
 });
-
-
-
-
 module.exports = router;

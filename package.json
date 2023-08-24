@@ -12,10 +12,15 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "express-handlebars": "^5.0.0",
+    "express-session": "^1.17.3",
     "handlebars-helpers": "^0.10.0",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
     "mongoose": "^6.11.5",
     "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "jsdom": "^22.1.0",
+    "puppeteer": "^21.1.0"
   }
 }

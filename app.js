@@ -3,12 +3,27 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session');
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const dom = new JSDOM();
+const document = dom.window.document;
+const puppeteer = require("puppeteer");
+(async () => {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await browser.close();
+})();
+
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var boytoyRouter = require('./routes/boytoy');
 var girltoyRouter = require('./routes/girltoy');
 var alltoysRouter = require('./routes/alltoys');
+var animaltoyRouter = require('./routes/animaltoy');
+
 
 
 var app = express();
@@ -35,12 +50,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: true
+}));
 
 app.use('/index', indexRouter);
 app.use('/users', usersRouter);
 app.use('/boytoy', boytoyRouter);
 app.use('/girltoy', girltoyRouter);
 app.use('/admin/alltoys', alltoysRouter);
+app.use('/animaltoy', animaltoyRouter);
 
 
 // catch 404 and forward to error handler

@@ -1,21 +1,24 @@
 const express = require('express');
 const router = express.Router();
-const btoy = require('../models/btoy');
-const gtoy = require('../models/gtoy');
+const BToy = require('../models/btoy');
+const GToy = require('../models/gtoy');
+const AToy = require('../models/atoy');
 
 router.get('/', async (req, res) => {
-    const btoys = await btoy.find();
-    const gtoys = await gtoy.find();
-    const allToys = [...btoys, ...gtoys];
+    const btoys = await BToy.find();
+    const gtoys = await GToy.find();
+    const atoys = await AToy.find();
+    const allToys = [...btoys, ...gtoys, ...atoys];
     res.render('admin/alltoys', { allToys });
 });
 
 router.get('/delete/:id', async (req, res) => {
     const toyId = req.params.id;
     console.log('Trying to delete toy with ID:', toyId);
-    const btoyDeleted = await btoy.findByIdAndDelete(toyId);
-    const gtoyDeleted = await gtoy.findByIdAndDelete(toyId);
-    if (btoyDeleted || gtoyDeleted) {
+    const btoyDeleted = await BToy.findByIdAndDelete(toyId);
+    const gtoyDeleted = await GToy.findByIdAndDelete(toyId);
+    const atoyDeleted = await AToy.findByIdAndDelete(toyId);
+    if (btoyDeleted || gtoyDeleted || atoyDeleted) {
         console.log('Toy deleted successfully.');
         res.redirect('/admin/alltoys');
     }
@@ -39,15 +42,24 @@ router.post('/add', async function(req, res, next){
     let newToy;
 
     if (gender === 'male') {
-        newToy = new btoy(newToyData);
+        newToy = new BToy(newToyData);
     } else if (gender === 'female') {
-        newToy = new gtoy({
+        newToy = new GToy({
             gname: newToyData.bname,
             gcategory: newToyData.bcategory,
             gimage: newToyData.bimage,
             gdetail: newToyData.bdetail,
             gprice: newToyData.bprice,
             gquantity: newToyData.bquantity
+        });
+    } else if (gender === 'animal') {
+        newToy = new AToy({
+            aname: newToyData.gname,
+            acategory: newToyData.gcategory,
+            aimage: newToyData.gimage,
+            adetail: newToyData.gdetail,
+            aprice: newToyData.gprice,
+            aquantity: newToyData.gquantity
         });
     }
 
@@ -61,13 +73,16 @@ router.post('/add', async function(req, res, next){
 
 router.get('/update/:id', async (req, res) => {
     const toyId = req.params.id;
-    const btoyToUpdate = await btoy.findById(toyId);
-    const gtoyToUpdate = await gtoy.findById(toyId);
+    const btoyToUpdate = await BToy.findById(toyId);
+    const gtoyToUpdate = await GToy.findById(toyId);
+    const atoyToUpdate = await AToy.findById(toyId);
 
     if (btoyToUpdate) {
         res.render('admin/update', { toy: btoyToUpdate });
     } else if (gtoyToUpdate) {
         res.render('admin/update', { toy: gtoyToUpdate });
+    } else if (atoyToUpdate) {
+        res.render('admin/update', { toy: atoyToUpdate });
     } else {
         res.redirect('/admin/alltoys');
     }
@@ -87,19 +102,24 @@ router.post('/update/:id', async function(req, res, next) {
         gdetail: req.body.detail,
         gimage: req.body.image,
         gprice: req.body.price,
-        gquantity: req.body.quantity
+        gquantity: req.body.quantity,
+        aname: req.body.name,
+        acategory: req.body.category,
+        adetail: req.body.detail,
+        aimage: req.body.image,
+        aprice: req.body.price,
+        aquantity: req.body.quantity
     };
 
     try {
-        await btoy.findByIdAndUpdate(toyId, updatedData);
-        await gtoy.findByIdAndUpdate(toyId, updatedData);
+        await BToy.findByIdAndUpdate(toyId, updatedData);
+        await GToy.findByIdAndUpdate(toyId, updatedData);
+        await AToy.findByIdAndUpdate(toyId, updatedData);
 
         res.redirect('/admin/alltoys');
     } catch (error) {
         console.error('Error updating toy:', error);
     }
 });
-
-
 
 module.exports = router;
